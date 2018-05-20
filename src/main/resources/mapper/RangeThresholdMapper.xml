@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RangeThresholdDao">
+    <resultMap id="selectAllPoint" type="RangeThreshold">
+        <id column="rangeId" property="rangeId"/>
+        <id column="x" property="x"/>
+        <id column="y" property="y"/>
+        <result column="rangeName" property="rangeName"/>
+    </resultMap>
+
+    <!--查询某条记录是否存在-->
+    <select id="isExisted" parameterType="RangeThreshold" resultType="Integer">
+        select count(*)
+        from range_threshold
+        where x=#{x} and y=#{y}
+    </select>
+    <!--根据rangeName返回所有的点-->
+    <select id="allPointByRangeName" parameterType="String" resultMap="selectAllPoint">
+        select rangeId,x,y,rangeName
+        from range_threshold
+        where rangeName=#{rangeName}
+    </select>
+    <!--查询点-->
+    <select id="queryRangeThreshold" parameterType="RangeThreshold" resultType="RangeThreshold">
+        select *
+        from range_threshold
+        where x=#{x} and y=#{y}
+    </select>
+    <!--删除点-->
+    <delete id="deletePoint" parameterType="RangeThreshold">
+        delete
+        from range_threshold
+        where x=#{x} and y=#{y}
+    </delete>
+    <!--插入点-->
+    <insert id="insertNewPoint" parameterType="RangeThreshold">
+        insert
+        into range_threshold(x,y,rangeName)
+        values (#{x},#{y},#{rangeName})
+    </insert>
+    <!--查询所有的范围阈值数据-->
+    <select id="getAllRangeThre" parameterType="RangeThreshold" resultType="RangeThreshold">
+        select *
+        from range_threshold
+    </select>
+</mapper>
