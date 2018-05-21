@@ -7,8 +7,10 @@
         <id column="y" property="y"/>
         <result column="rangeName" property="rangeName"/>
     </resultMap>
-
-    <!--查询某条记录是否存在-->
+    <sql id="Base_List">
+     rangeId,x,y,rangeName
+     </sql>
+<!--查询某条记录是否存在-->
     <select id="isExisted" parameterType="RangeThreshold" resultType="Integer">
         select count(*)
         from range_threshold
@@ -42,5 +44,18 @@
     <select id="getAllRangeThre" parameterType="RangeThreshold" resultType="RangeThreshold">
         select *
         from range_threshold
+    </select>
+    <!--查询总记录数-->
+    <select id="getCount" resultType="int">
+        select count(*) from range_threshold
+    </select>
+
+    <!--分页查询所有阈值-->
+    <select id="getRangeByPage" parameterType="Map" resultType="RangeThreshold">
+        select rangeId,x,y,rangeName
+        from range_threshold
+        <if test="start!=null and size!=null">
+                limit #{start},#{size}
+        </if>
     </select>
 </mapper>

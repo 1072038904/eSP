@@ -6,6 +6,7 @@ import com.pojo.RangeThreshold;
 import com.pojoPolicy.RangeThresholdPolicy;
 import com.pojoPolicy.imple.RangeThresholdPolicyImple;
 import com.service.RangeThresholdService;
+import com.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +79,35 @@ public class RangeThresholdServiceImpl implements RangeThresholdService {
     public List<RangeThreshold> getAllRangeThre() {
         List<RangeThreshold> rangeThresholds = rangeThresholdDao.getAllRangeThre();
         return rangeThresholds;
+    }
+
+    @Override
+    public PageBean<RangeThreshold> findByPage(int currentPage) {
+        HashMap<String,Object> map = new HashMap<>();
+        PageBean<RangeThreshold> pageBean = new PageBean<>();
+        //封装当前页数
+        pageBean.setCurrPage(currentPage);
+
+        //每页显示页数
+        int pageSize = 2;
+        pageBean.setPageSize(pageSize);
+
+        //封装总记录数
+        int totalCount = rangeThresholdDao.getCount();
+        pageBean.setTotalCount(totalCount);
+
+        //封装总页数
+        double tc =totalCount;
+        Double num = Math.ceil(tc);
+        pageBean.setTotalPage(num.intValue());
+
+        map.put("start",(currentPage-1)*pageSize);
+        map.put("size",pageBean.getPageSize());
+        //封装每页显示的数据
+        List<RangeThreshold> rangeThresholdList = rangeThresholdDao.getRangeByPage(map);
+        pageBean.setLists(rangeThresholdList);
+
+        return pageBean;
     }
 
     public static void main(String args[]){

@@ -1,5 +1,7 @@
 import com.dao.RangeThresholdDao;
 import com.pojo.RangeThreshold;
+import com.service.RangeThresholdService;
+import com.util.PageBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ import java.util.List;
 public class RangeThresholdDaoTest {
     @Autowired
     private RangeThresholdDao rangeThresholdDao;
-
+    @Autowired
+    private RangeThresholdService rangeThresholdService;
     // 点是否存在
     @Test
     public void testIsHotExisted() {
@@ -73,5 +76,11 @@ public class RangeThresholdDaoTest {
             RangeThreshold rangeThreshold = it.next();
             System.out.println(rangeThreshold.toString());
         }
+    }
+    /*分页显示所有数据*/
+    @Test
+    public  void getRangeByPage(){
+        PageBean<RangeThreshold> rangeThresholdPageBean = rangeThresholdService.findByPage(1);
+        System.out.print(rangeThresholdPageBean.getLists().get(0).getRangeName());
     }
 }

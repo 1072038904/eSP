@@ -2,6 +2,7 @@ package com.service;
 
 import com.pojo.Hot;
 import com.pojo.RangeThreshold;
+import com.util.PageBean;
 
 import java.util.List;
 import java.util.Map;
@@ -21,4 +22,6 @@ public interface RangeThresholdService {
     Map<String ,List<Hot>> divideHotsByRange(List<Hot> hots, int timeThreshold);
     /*得到所有的范围阈值数据*/
     List<RangeThreshold> getAllRangeThre();
+    /*分页查询所有的范围数据*/
+    PageBean<RangeThreshold> findByPage(int currentPage);
 }

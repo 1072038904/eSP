@@ -1,7 +1,9 @@
 package com.dao;
 
 import com.pojo.RangeThreshold;
+import com.util.PageBean;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface RangeThresholdDao {
@@ -27,4 +29,8 @@ public interface RangeThresholdDao {
     List<String> queryAllRangeName();
     /*查询出所有的范围阈值数据*/
     List<RangeThreshold> getAllRangeThre();
+    /*分页查询所有范围阈值数据*/
+    List<RangeThreshold> getRangeByPage(HashMap<String,Object> map);
+    /*查询出总记录数*/
+    int getCount();
 }

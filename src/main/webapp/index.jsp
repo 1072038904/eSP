@@ -1,8 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"
+		   uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
 <html>
 <head>
+	<base href="<%=basePath%>"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>添加用户</title>
 <style type="text/css">
@@ -12,14 +20,10 @@
 </style>
 </head>
 <body>
-<a href="te/test">123121</a>
+<script src="js/lib/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css">
+<script src="js/lib/bootstrap.js"></script>
+<button id="getRange" href="">123121</button>
 
-	<div id="content">
-		<form method="post" action="insertUser">
-			姓名：<input type="text" id="userName" name="userName"><br>
-			生日：<input type="text" id="birth" name="birth"><br> <input
-				type="submit" value="确定">
-		</form>
-	</div>
 </body>
 </html>

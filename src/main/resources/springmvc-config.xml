@@ -9,12 +9,14 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
+	<mvc:default-servlet-handler />
 	<!-- 包扫描 -->
 	<context:component-scan base-package="com.controller" />
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
 	<!-- html文件处理 -->
-	<mvc:resources mapping="/*.html" location="/WEB-INF/jsp" />
+	<!--<mvc:resources mapping="/css/**" location="/css"/>-->
 	<!-- 视图解析 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -22,7 +24,7 @@
 			<value>/WEB-INF/jsp/</value>
 		</property>
 		<property name="suffix">
-			<value>.html</value>
+			<value>.jsp</value>
 		</property>
 	</bean>
 </beans>
